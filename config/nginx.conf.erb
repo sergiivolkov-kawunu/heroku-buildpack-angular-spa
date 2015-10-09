@@ -62,7 +62,7 @@ http {
       }
     <% end %>
 
-    <% if ENV["API_URL"] %>
+    <% if ENV["API_URL"] && ENV["SITEMAP_URL"] %>
       location <%= ENV["SITEMAP_URL"] %> {
         proxy_pass <%= ENV["API_URL"] %>;
         proxy_set_header X-Real-IP $remote_addr;
