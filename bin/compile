@@ -119,6 +119,10 @@ status "Installing bower which is required by other dependencies"
 npm install bower --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
 PATH=$build_dir/node_modules/bower/bin:$PATH
 
+status "Installing yarn"
+npm install yarn --quiet --userconfig $build_dir/.npmrc 2>&1 | indent 
+PATH=$build_dir/node_modules/yarn/bin:$PATH
+
 status "Installing dependencies"
 # Make npm output to STDOUT instead of its default STDERR
 npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
@@ -154,7 +158,7 @@ status "Cleaning up node-gyp and npm artifacts"
 rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
-yarn
+yarn install | indent
 
 # bower install | indent
 
